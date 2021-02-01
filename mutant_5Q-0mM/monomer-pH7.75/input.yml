@@ -1,0 +1,142 @@
+#!/usr/bin/env yason.py
+#
+# This sets up a small, rigid molecule with titratable sites.
+# Titration is performed with implicit protons, coupled to
+# a grand canonical bath of 1:1 salt
+#
+
+
+
+temperature: 298        # in Kelvin
+random:   {seed: hardware} # seed for random number generator
+mcloop:   {macro: 10, micro: 100000 } # number of steps in MC simulation
+geometry: {type: sphere, radius: 270.63266526899685} # --> Cp = 20 micromolar
+atomlist:
+    # properties for all interaction sites, here single amino acids
+    - ASP:  { q: -1, r: 3.6, mw: 110, dp: 2, eps: 0.125 }
+    - HASP: { q:  0, r: 3.6, mw: 110, dp: 2, eps: 0.125 }
+    - CTR:  { q: -1, r: 2.0, mw: 16,  dp: 2, eps: 0.125 }
+    - HCTR: { q:  0, r: 2.0, mw: 16,  dp: 2, eps: 0.125 }
+    - GLU:  { q: -1, r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - HGLU: { q:  0, r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - TYR:  { q: -1, r: 4.1, mw: 154, dp: 2, eps: 0.125 }
+    - HTYR: { q: 0,  r: 4.1, mw: 154, dp: 2, eps: 0.125 }
+    - CYS:  { q: -1, r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - HCYS: { q: 0,  r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - CYb:  { q: 0,  r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - HIS:  { q: 0,  r: 3.9, mw: 130, dp: 2, eps: 0.125 }
+    - HHIS: { q: 1,  r: 3.9, mw: 130, dp: 2, eps: 0.125 }
+    - NTR:  { q: 0,  r: 2.0, mw: 14,  dp: 2, eps: 0.125 }
+    - HNTR: { q: 1,  r: 2.0, mw: 14,  dp: 2, eps: 0.125 }
+    - LYS:  { q: 0,  r: 3.7, mw: 116, dp: 2, eps: 0.125 }
+    - HLYS: { q: 1,  r: 3.7, mw: 116, dp: 2, eps: 0.125 }
+    - ARG:  { q: 0,  r: 4.0, mw: 144, dp: 2, eps: 0.125 }
+    - HARG: { q: 1,  r: 4.0, mw: 144, dp: 2, eps: 0.125 }
+    - ALA:  { q: 0,  r: 3.1, mw: 66,  dp: 2, eps: 0.125 }
+    - ILE:  { q: 0,  r: 3.6, mw: 102, dp: 2, eps: 0.125 }
+    - LEU:  { q: 0,  r: 3.6, mw: 102, dp: 2, eps: 0.125 }
+    - MET:  { q: 0,  r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - PHE:  { q: 0,  r: 3.9, mw: 138, dp: 2, eps: 0.125 }
+    - PRO:  { q: 0,  r: 3.4, mw: 90,  dp: 2, eps: 0.125 }
+    - TRP:  { q: 0,  r: 4.3, mw: 176, dp: 2, eps: 0.125 }
+    - VAL:  { q: 0,  r: 3.4, mw: 90,  dp: 2, eps: 0.125 }
+    - SER:  { q: 0,  r: 3.3, mw: 82,  dp: 2, eps: 0.125 }
+    - THR:  { q: 0,  r: 3.5, mw: 94,  dp: 2, eps: 0.125 }
+    - ASN:  { q: 0,  r: 3.6, mw: 108, dp: 2, eps: 0.125 }
+    - GLN:  { q: 0,  r: 3.8, mw: 120, dp: 2, eps: 0.125 }
+    - GLY:  { q: 0,  r: 2.9, mw: 54,  dp: 2, eps: 0.125 }
+    - na:   { q: 1.0, sigma: 4.6, mw: 1, dp: 50, eps: 0.0125}
+    - cl:   { q: -1.0, sigma: 4.6, mw: 1, dp: 50, eps: 0.0125}
+    - H+:   { implicit: True, activity: 1.7782794100389228e-08 }
+
+moleculelist:
+    # E114Q E123Q E126Q E137Q E139Q
+    - Na+: {atoms: [na], atomic: true, activity: 0.0005 }
+    - Cl-: {atoms: [cl], atomic: true, activity: 0.0005 }
+    - protein: { structure: {fasta: "nMDVFMKGLSK\
+    AKEGVVAAAE\
+    KTKQGVAEAA\
+    GKTKEGVLYV\
+    GSKTKEGVVH\
+    GVATVAEKTK\
+    EQVTNVGGAV\
+    VTGVTAVAQK\
+    TVEGAGSIAA\
+    ATGFVKKDQL\
+    GKNEEGAPQEGILQDMPVDPDNQAYQMPSEEGYQDYQPQAc", k: 3, req: 7} } # N=28
+
+energy:
+    - bonded: {}
+    - customexternal: # keep COM centered
+        molecules: [protein]
+        com: true
+        function:
+            0.05 * sqrt( x^2+y^2+z^2 );
+
+    - nonbonded_coulomblj:
+            coulomb: {epsr: 80, type: plain}
+            lennardjones:
+                mixing: lorentz_berthelot
+                custom:
+                    - "na cl": {sigma: 4.6, eps: 0.01}
+                    - "na GLU": {sigma: 5.25, eps: 0.01}
+                    - "na ASP": {sigma: 5.25, eps: 0.01}
+                    - "na CTR": {sigma: 5.25, eps: 0.01}
+                    - "cl HNTR": {sigma: 4.70, eps: 0.01}
+                    - "cl HLYS": {sigma: 4.70, eps: 0.01}
+                    - "cl HARG": {sigma: 3.50, eps: 0.01}
+                      
+                      
+insertmolecules:
+    - protein: {N: 1}
+    - Na+: {N: 150}
+    - Cl-: {N: 121}
+
+reactionlist:
+    # H+ is implicit and to maintain electroneutrality
+    # we accompany swap moves with insertion/deletion
+    # of either a chloride or a sodium ion.
+    # Effectively this means that we can interconvert
+    # H+ <-> Na+ <-> Cl-. Excess salt pairs are removed
+    # by the final NaCl GC reaction.
+    #
+    # pKa values from dx.doi.org/10.1110/ps.051840806
+    #
+    - HCTR + Cl- = CTR + H+:  {pK: 3.67}
+    - HASP + Cl- = ASP + H+:  {pK: 4.0}
+    - HGLU + Cl- = GLU + H+:  {pK: 4.4}
+    - HHIS + Cl- = HIS + H+:  {pK: 6.54}
+    - HCYS + Cl- = CYS + H+:  {pK: 8.55}
+    - HNTR + Cl- = NTR + H+:  {pK: 8.0}
+    - HTYR + Cl- = TYR + H+:  {pK: 9.84}
+    - HLYS + Cl- = LYS + H+:  {pK: 10.4}
+    - HARG + Cl- = ARG + H+:  {pK: 12.0}
+    - HCTR = Na+ + CTR + H+:  {pK: 3.67}
+    - HASP = Na+ + ASP + H+:  {pK: 4.0}
+    - HGLU = Na+ + GLU + H+:  {pK: 4.4}
+    - HHIS = Na+ + HIS + H+:  {pK: 6.54}
+    - HCYS = Na+ + CYS + H+:  {pK: 8.55}
+    - HNTR = Na+ + NTR + H+:  {pK: 8.0}
+    - HTYR = Na+ + TYR + H+:  {pK: 9.84}
+    - HLYS = Na+ + LYS + H+:  {pK: 10.4}
+    - HARG = Na+ + ARG + H+:  {pK: 12.0}
+    - = Na+ + Cl-: {} # activates grand canonical salt
+
+moves:
+    - rcmc:     {repeat: 50}                            # reactive ensemble for proton titration
+    - transrot: {molecule: Na+, repeat: 1}              # move individual salt beads
+    - transrot: {molecule: Cl-, repeat: 1}              # move individual salt beads
+    - transrot: {molecule: protein, repeat: 1}
+    - pivot: {molecule: protein, dprot: 2, repeat: 2}
+    - crankshaft: {molecule: protein, dprot: 2, repeat: 2}
+
+analysis:
+    - savestate: {file: confout.pqr}
+    - sanity: {nstep: 200}                           # is the simulation OK?
+    - chargefluctuations: {nstep: 10, molecule: protein, pqrfile: rigid_avg.pqr} # charge analysis of all sites
+    - multipole: {nstep: 10}                         # molecular charge, capacitance and dipole moment
+    - systemenergy: {file: energy.dat, nstep: 100} # track total system energy
+    - density: {nstep: 100}             # monitors salt density
+    - savestate: {file: state.json}
+    - xtcfile: {file: traj.xtc, nstep: 200}
+    - qrfile: {nstep: 200}

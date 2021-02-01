@@ -1,0 +1,145 @@
+#!/usr/bin/env yason.py
+#
+# Titration is performed with implicit protons, coupled to
+# a grand canonical bath of 1:1 salt
+#
+
+
+
+
+
+temperature: 298        # in Kelvin
+random:   {seed: hardware} # seed for random number generator
+mcloop:   {macro: 10, micro: 5000 } # number of steps in MC simulation
+geometry: {type: sphere, radius: 270.63266526899685} # --> Cp = 20 micromolar
+atomlist:
+    # properties for all interaction sites, here single amino acids
+    - ASP:  { q: -1, r: 3.6, mw: 110, dp: 2, eps: 0.125 }
+    - HASP: { q:  0, r: 3.6, mw: 110, dp: 2, eps: 0.125 }
+    - CTR:  { q: -1, r: 2.0, mw: 16,  dp: 2, eps: 0.125 }
+    - HCTR: { q:  0, r: 2.0, mw: 16,  dp: 2, eps: 0.125 }
+    - GLU:  { q: -1, r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - HGLU: { q:  0, r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - TYR:  { q: -1, r: 4.1, mw: 154, dp: 2, eps: 0.125 }
+    - HTYR: { q: 0,  r: 4.1, mw: 154, dp: 2, eps: 0.125 }
+    - CYS:  { q: -1, r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - HCYS: { q: 0,  r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - CYb:  { q: 0,  r: 3.6, mw: 103, dp: 2, eps: 0.125 }
+    - HIS:  { q: 0,  r: 3.9, mw: 130, dp: 2, eps: 0.125 }
+    - HHIS: { q: 1,  r: 3.9, mw: 130, dp: 2, eps: 0.125 }
+    - NTR:  { q: 0,  r: 2.0, mw: 14,  dp: 2, eps: 0.125 }
+    - HNTR: { q: 1,  r: 2.0, mw: 14,  dp: 2, eps: 0.125 }
+    - LYS:  { q: 0,  r: 3.7, mw: 116, dp: 2, eps: 0.125 }
+    - HLYS: { q: 1,  r: 3.7, mw: 116, dp: 2, eps: 0.125 }
+    - ARG:  { q: 0,  r: 4.0, mw: 144, dp: 2, eps: 0.125 }
+    - HARG: { q: 1,  r: 4.0, mw: 144, dp: 2, eps: 0.125 }
+    - ALA:  { q: 0,  r: 3.1, mw: 66,  dp: 2, eps: 0.125 }
+    - ILE:  { q: 0,  r: 3.6, mw: 102, dp: 2, eps: 0.125 }
+    - LEU:  { q: 0,  r: 3.6, mw: 102, dp: 2, eps: 0.125 }
+    - MET:  { q: 0,  r: 3.8, mw: 122, dp: 2, eps: 0.125 }
+    - PHE:  { q: 0,  r: 3.9, mw: 138, dp: 2, eps: 0.125 }
+    - PRO:  { q: 0,  r: 3.4, mw: 90,  dp: 2, eps: 0.125 }
+    - TRP:  { q: 0,  r: 4.3, mw: 176, dp: 2, eps: 0.125 }
+    - VAL:  { q: 0,  r: 3.4, mw: 90,  dp: 2, eps: 0.125 }
+    - SER:  { q: 0,  r: 3.3, mw: 82,  dp: 2, eps: 0.125 }
+    - THR:  { q: 0,  r: 3.5, mw: 94,  dp: 2, eps: 0.125 }
+    - ASN:  { q: 0,  r: 3.6, mw: 108, dp: 2, eps: 0.125 }
+    - GLN:  { q: 0,  r: 3.8, mw: 120, dp: 2, eps: 0.125 }
+    - GLY:  { q: 0,  r: 2.9, mw: 54,  dp: 2, eps: 0.125 }
+    - na:   { q: 1.0, sigma: 4.6, mw: 1, dp: 50, eps: 0.0125}
+    - cl:   { q: -1.0, sigma: 4.6, mw: 1, dp: 50, eps: 0.0125}
+    - H+:   { implicit: True, activity: 5.6234132519034905e-08 }
+
+moleculelist:
+    - Na+: {atoms: [na], atomic: true, activity: 0.0005 }
+    - Cl-: {atoms: [cl], atomic: true, activity: 0.0005 }
+    - ntr: { structure: {fasta: "nDVFMKGLSKAKEGVVAAAEKTKQGVAE", k: 3, req: 7} } # N=28
+    - ctr: { structure: {fasta: "GKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEc", k: 3, req: 7} } # N=40
+    - protein: # 72 * 10
+        insdir: [0,0,0]
+        structure: ../struct/2n0a_rigid.aam
+        keepcharges: false
+
+energy:
+    - bonded:
+        bondlist:
+            - harmonic: { index: [0, 747], k: 3, req: 7 }
+            - harmonic: { index: [72, 775], k: 3, req: 7 }
+            - harmonic: { index: [144, 803], k: 3, req: 7 }
+            - harmonic: { index: [216, 831], k: 3, req: 7 }
+            - harmonic: { index: [288, 859], k: 3, req: 7 }
+            - harmonic: { index: [360, 887], k: 3, req: 7 }
+            - harmonic: { index: [432, 915], k: 3, req: 7 }
+            - harmonic: { index: [504, 943], k: 3, req: 7 }
+            - harmonic: { index: [576, 971], k: 3, req: 7 }
+            - harmonic: { index: [648, 999], k: 3, req: 7 }
+            - harmonic: { index: [71, 1000], k: 3, req: 7 }
+            - harmonic: { index: [143, 1040], k: 3, req: 7 }
+            - harmonic: { index: [215, 1080], k: 3, req: 7 }
+            - harmonic: { index: [287, 1120], k: 3, req: 7 }
+            - harmonic: { index: [359, 1160], k: 3, req: 7 }
+            - harmonic: { index: [431, 1200], k: 3, req: 7 }
+            - harmonic: { index: [503, 1240], k: 3, req: 7 }
+            - harmonic: { index: [575, 1280], k: 3, req: 7 }
+            - harmonic: { index: [647, 1320], k: 3, req: 7 }
+            - harmonic: { index: [719, 1360], k: 3, req: 7 }
+    - nonbonded_coulomblj:
+            coulomb: {epsr: 80, type: yukawa, debyelength: 135.95293303198721, cutoff: 407.8587990959617 }
+            lennardjones:
+                mixing: lorentz_berthelot
+                custom:
+                    - "na cl": {sigma: 4.6, eps: 0.01}
+                    - "na GLU": {sigma: 5.25, eps: 0.01}
+                    - "na ASP": {sigma: 5.25, eps: 0.01}
+                    - "na CTR": {sigma: 5.25, eps: 0.01}
+                    - "cl HNTR": {sigma: 4.70, eps: 0.01}
+                    - "cl HLYS": {sigma: 4.70, eps: 0.01}
+                    - "cl HARG": {sigma: 3.50, eps: 0.01}
+
+insertmolecules:
+    - protein: {N: 1}
+    - ntr: {N: 10}
+    - ctr: {N: 10}
+
+reactionlist:
+    # H+ is implicit and to maintain electroneutrality
+    # we accompany swap moves with insertion/deletion
+    # of either a chloride or a sodium ion.
+    # Effectively this means that we can interconvert
+    # H+ <-> Na+ <-> Cl-. Excess salt pairs are removed
+    # by the final NaCl GC reaction.
+    #
+    # pKa values from dx.doi.org/10.1110/ps.051840806
+    #
+    - HCTR = CTR + H+:  {pK: 3.67}
+    - HASP = ASP + H+:  {pK: 4.0}
+    - HGLU = GLU + H+:  {pK: 4.4}
+    - HHIS = HIS + H+:  {pK: 6.54}
+    - HCYS = CYS + H+:  {pK: 8.55}
+    - HNTR = NTR + H+:  {pK: 8.0}
+    - HTYR = TYR + H+:  {pK: 9.84}
+    - HLYS = LYS + H+:  {pK: 10.4}
+    - HARG = ARG + H+:  {pK: 12.0}
+
+moves:
+    - rcmc:     {repeat: 50}                            # reactive ensemble for proton titration
+    - transrot: {molecule: ntr, repeat: 1}
+    - transrot: {molecule: ctr, repeat: 1}
+    - pivot: {molecule: ntr, dprot: 2, repeat: 2}
+    - pivot: {molecule: ctr, dprot: 2, repeat: 2}
+    - crankshaft: {molecule: ntr, dprot: 2, repeat: 2}
+    - crankshaft: {molecule: ctr, dprot: 2, repeat: 2}
+
+
+analysis:
+    - savestate: {file: confout.pqr}
+    - sanity: {nstep: 1000}                           # is the simulation OK?
+    - chargefluctuations: {nstep: 10, molecule: protein, pqrfile: rigid_avg.pqr} # charge analysis of all sites
+    - chargefluctuations: {nstep: 10, molecule: ntr, pqrfile: ntr_avg.pqr} # charge analysis of all sites
+    - chargefluctuations: {nstep: 10, molecule: ctr, pqrfile: ctr_avg_avg.pqr} # charge analysis of all sites
+    - multipole: {nstep: 10}                         # molecular charge, capacitance and dipole moment
+    - systemenergy: {file: energy.dat.gz, nstep: 100} # track total system energy
+    - density: {nstep: 100}             # monitors salt density
+    - savestate: {file: state.json}
+    - xtcfile: {file: traj.xtc, nstep: 1000}
+    - qrfile: {nstep: 1000}

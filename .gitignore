@@ -1,3 +1,9 @@
+extract-nmr-data/
+mutant_5Q-0mM/
+wildtype-0mM/
+wildtype-15mM/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,12 @@
+name: asyntitr
+channels:
+    - defaults
+dependencies:
+    - python=3
+    - pandas=1
+    - scipy=1
+    - matplotlib=3
+    - lxml
+    - numpy
+    - notebook
+    - jinja2
