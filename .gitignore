@@ -2,7 +2,7 @@ extract-nmr-data/
 mutant_5Q-0mM/
 wildtype-0mM/
 wildtype-15mM/
-
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
