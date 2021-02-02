@@ -14,7 +14,7 @@ together with Jupyter Notebooks (`*.ipynb`) for reproducing analysis and figures
 - `wildtype-15mM/` - α-synuclein wildtype, 15 mM salt
 - `mutant_5Q-0mM/` - α-synuclein 5Q mutant, no salt
 - `extract-nmr-data/` - Notebook for extracting data NMR data
-- `faunus-075bf8de.zip` - C++ source of the MC simulation software (Faunus 2.4.1, git patch 075bf8de)
+- `faunus-source/` - C++ source of the MC simulation software (Faunus 2.4.1, git patch 075bf8de)
 
 ## Requirements
 
@@ -28,5 +28,14 @@ make sure all required packages are loaded by issuing the following terminal com
     jupyter-notebook
 ```
 
-For optionally re-running simulations, [Faunus](https://github.com/mlund/faunus) must be build using a C++ compiler.
+### Monte Carlo Simulation Software
 
+For optionally running simulations, [Faunus](https://github.com/mlund/faunus) must be build using a C++ compiler:
+
+``` bash
+    cd faunus-source/
+    unzip faunus-075bf8de.zip 
+    patch CMakeLists.txt patch1-eigen.diff # apply patch due to URL change of dependency
+    cmake . -DCMAKE_BUILD_TYPE=Release
+    make faunus -j
+```
