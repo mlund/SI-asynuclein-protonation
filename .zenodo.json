@@ -1,0 +1,54 @@
+{
+    "title": "Electronic Notebooks for Charge Compensation During Amyloid Formation of α-Synuclein",
+    "description": "This repository contains electronic notebooks (jupyter) for reproducing the simulation results presented in the above manuscript.",
+    "creators": [
+        {
+            "name": "Mikael Lund",
+            "affiliation": "Division of Theoretical Chemistry, Department of Chemistry, Lund University, Sweden",
+            "orcid": "0000-0001-8178-8175"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Tinna Pálmadóttir",
+            "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
+        },
+        {
+            "name": "Anders Malmendal",
+            "affiliation": "Department of Science and Environment, Chemistry, Roskilde University, Denmark"
+        },
+        {
+            "name": "Thom Leiding",
+            "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
+        },
+        {
+            "name": "Sara Linse",
+            "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
+        }
+    ],
+    "keywords": [
+        "electrostatics",
+        "biophysical chemistry",
+        "monte carlo simulation",
+        "molecular modelling",
+        "protonation states",
+        "amyloid fibrils"
+    ],
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://github.com/mlund/SI-asynuclein-protonation",
+            "relation": "isSupplementTo"
+        },
+        {
+            "scheme": "doi",
+            "identifier": "",
+            "relation": "isSupplementTo"
+        }
+    ],
+    "license": {
+        "id": "CC0-1.0"
+    },
+    "access_right": "open",
+    "upload_type": "software"
+}
