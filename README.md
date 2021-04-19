@@ -1,6 +1,6 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mlund/SI-asynuclein-protonation/HEAD?urlpath=lab)
 
-# Supporting information for _Charge Compensation During Amyloid Formation of α-synuclein_
+# Supporting information for _Charge Regulation During Amyloid Formation of α-synuclein_
 
 This repository contains electronic notebooks for reproducing the simulation results presented
 in the above manuscript.
