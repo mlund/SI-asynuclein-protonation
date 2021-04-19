@@ -18,9 +18,10 @@ together with Jupyter Notebooks (`*.ipynb`) for reproducing analysis and figures
 
 ## Requirements
 
-To run the Notebooks online, click on the "launch binder" logo above. Alternatively,
-install python via [Miniconda](https://conda.io/miniconda.html) and
-make sure all required packages are loaded by issuing the following terminal commands
+To run the Notebooks online, click on the _Launch Binder_ logo above. Alternatively, if you want
+to run on your own computer,
+install python via e.g. [Miniconda](https://conda.io/miniconda.html) or [Anaconda](https://docs.conda.io)
+and make sure all required packages are loaded by issuing the following terminal commands
 
 ``` bash
     conda env create -f environment.yml
