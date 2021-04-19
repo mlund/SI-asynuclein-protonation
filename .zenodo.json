@@ -1,6 +1,6 @@
 {
-    "title": "Electronic Notebooks for Charge Compensation During Amyloid Formation of α-Synuclein",
-    "description": "This repository contains electronic notebooks (jupyter) for reproducing the simulation results presented in the above manuscript.",
+    "title": "Electronic Notebooks: Charge Compensation During Amyloid Formation of α-Synuclein",
+    "description": "This repository contains electronic notebooks (Jupyter) for reproducing the simulation results presented in the above manuscript.",
     "creators": [
         {
             "name": "Mikael Lund",
@@ -11,10 +11,12 @@
     "contributors": [
         {
             "name": "Tinna Pálmadóttir",
+            "orcid": "0000-0001-8380-4650",
             "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
         },
         {
             "name": "Anders Malmendal",
+            "orcid": "0000-0002-8413-9717",
             "affiliation": "Department of Science and Environment, Chemistry, Roskilde University, Denmark"
         },
         {
@@ -23,6 +25,7 @@
         },
         {
             "name": "Sara Linse",
+            "orcid": "0000-0001-9629-7109",
             "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
         }
     ],
@@ -32,6 +35,7 @@
         "monte carlo simulation",
         "molecular modelling",
         "protonation states",
+        "reproducible science",
         "amyloid fibrils"
     ],
     "related_identifiers": [
