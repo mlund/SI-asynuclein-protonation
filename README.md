@@ -39,3 +39,5 @@ For optionally running simulations, [Faunus](https://github.com/mlund/faunus) mu
     cmake . -DCMAKE_BUILD_TYPE=Release
     make faunus -j
 ```
+
+The Faunus revision included here is close to v2.4.x and you may be able to use that instead.
