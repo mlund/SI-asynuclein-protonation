@@ -3,7 +3,7 @@
 # Electronic Notebook: _Charge Regulation During Amyloid Formation of α-synuclein_
 
 This repository contains electronic notebooks for reproducing the simulation results presented
-in the above manuscript.
+in the above manuscript, published in [Journal of the American Chemical Society, 2021](https://dx.doi.org/10.1021/jacs.1c01925).
 
 ## Layout
 
