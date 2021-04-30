@@ -1,6 +1,6 @@
 {
     "title": "Electronic Notebooks: Charge Compensation During Amyloid Formation of α-Synuclein",
-    "description": "This repository contains electronic notebooks (Jupyter) for reproducing the simulation results presented in the above manuscript.",
+    "description": "This repository contains electronic notebooks (Jupyter) for reproducing the simulation results presented in the above article (doi:10.1021/jacs.1c01925)",
     "creators": [
         {
             "name": "Mikael Lund",
