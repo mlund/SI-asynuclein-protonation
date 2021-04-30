@@ -1,4 +1,5 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mlund/SI-asynuclein-protonation/HEAD?urlpath=lab)
+[![DOI](https://zenodo.org/badge/335014493.svg)](https://zenodo.org/badge/latestdoi/335014493)
 
 # Electronic Notebook: _Charge Regulation During Amyloid Formation of α-synuclein_
 
