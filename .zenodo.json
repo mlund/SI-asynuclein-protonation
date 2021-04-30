@@ -5,32 +5,25 @@
         {
             "name": "Mikael Lund",
             "affiliation": "Division of Theoretical Chemistry, Department of Chemistry, Lund University, Sweden",
-            "type": "Researcher",
             "orcid": "0000-0001-8178-8175"
-        }
-    ],
-    "contributors": [
+        },
         {
             "name": "Tinna Pálmadóttir",
             "orcid": "0000-0001-8380-4650",
-            "type": "Researcher",
             "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
         },
         {
             "name": "Anders Malmendal",
             "orcid": "0000-0002-8413-9717",
-            "type": "Researcher",
             "affiliation": "Department of Science and Environment, Chemistry, Roskilde University, Denmark"
         },
         {
             "name": "Thom Leiding",
-            "type": "Researcher",
             "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
         },
         {
             "name": "Sara Linse",
             "orcid": "0000-0001-9629-7109",
-            "type": "Researcher",
             "affiliation": "Department of Biochemistry and Structural Biology, Lund University, Sweden"
         }
     ],
